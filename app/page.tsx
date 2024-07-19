@@ -1,6 +1,7 @@
-import { getAboutMeContent, getProjects } from "@/sanity/sanity-utils";
+import { getAboutMeContent, getProjects, getSkills } from "@/sanity/sanity-utils";
 import { Project } from "@/types/Project";
 import AboutMeSection from "./_components/about-me-section";
+import SkillsSection from "./_components/skills-section";
 
 
 
@@ -8,6 +9,7 @@ export default async function Home() {
 
   const projects = await getProjects();
   const aboutMeContent = await getAboutMeContent();
+  const skills = await getSkills();
 
 
   return (
@@ -17,6 +19,7 @@ export default async function Home() {
       <div className="py-8">
         <AboutMeSection aboutMeContent={aboutMeContent} />
       </div>
+      <SkillsSection skills={skills}/>
 
       <h2>Projects</h2>
 

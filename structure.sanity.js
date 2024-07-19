@@ -18,6 +18,9 @@ export const deskStructure = (S) =>
            
         ),
       S.listItem().title('Projects').schemaType('project').child(S.documentTypeList('project').title('Projects')),
+      S.listItem().title('Education').schemaType('education').child(S.documentTypeList('education').title('Education')),
+      S.listItem().title('Experience').schemaType('experience').child(S.documentTypeList('experience').title('Experience Item')),
+      S.listItem().title('Skills').schemaType('skill').child(S.documentTypeList('skill').title('Skills')),
       
     ]);
 

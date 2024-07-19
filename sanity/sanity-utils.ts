@@ -1,16 +1,12 @@
 import { createClient, groq } from "next-sanity";
-
-function getClient() {
-    const client = createClient({
-        projectId: "8j2dqrzf",
-        dataset: "production",
-        apiVersion: "2024-07-17",
-    });
-    return client
-}
+const client = createClient({
+  projectId: "8j2dqrzf",
+  dataset: "production",
+  apiVersion: "2024-07-17",
+});
 
 export async function getProjects() {
-   const client = getClient()
+ 
 
     return client.fetch(
         groq`*[_type == "project"] | order(_createdAt asc) {
@@ -26,8 +22,7 @@ export async function getProjects() {
 }
 
 export async function getAboutMeContent() {
-    const client = getClient();
-    console.log('getting about me content')
+  
   
     return client.fetch(
       groq`*[_type == "aboutMe" && _id == "aboutMeSingle"][0]  {  
@@ -35,8 +30,19 @@ export async function getAboutMeContent() {
         _createdAt,
         headline,
         intro,
-        "image": profileImage.asset->url,
+        "image": image.asset->url,
         list
+      }`
+    );
+  }
+
+  export async function getSkills() {
+    return client.fetch(
+      groq`*[_type == "skill"]{
+        _id,
+        name,
+        proficiency,
+        "icon": icon.asset->url
       }`
     );
   }
